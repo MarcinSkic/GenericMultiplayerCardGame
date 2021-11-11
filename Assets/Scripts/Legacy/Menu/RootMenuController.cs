@@ -16,13 +16,13 @@ public class RootMenuController : MonoBehaviour
     }
     public void Start()
     {
-        Debug.Log("Connecting to Master");
+        /*Debug.Log("Connecting to Master");
         OpenMenu("loading");
         PhotonNetwork.ConnectUsingSettings();
         foreach(SubController menu in menus)
         {
             menu.root = this;
-        }
+        }*/
     }
     public void OpenMenu(string menuName)
     {

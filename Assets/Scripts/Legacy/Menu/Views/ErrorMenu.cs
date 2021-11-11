@@ -17,6 +17,6 @@ public class ErrorMenu : BaseMenu
     }
     public void SetErrorText(string error)
     {
-        errorText.text = "Room creation failed:\n" + error;
+        errorText.text = "Error:\n" + error;
     }
 }

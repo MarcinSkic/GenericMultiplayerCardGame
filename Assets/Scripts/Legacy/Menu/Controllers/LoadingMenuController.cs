@@ -8,10 +8,12 @@ public class LoadingMenuController : SubController<LoadingMenu>
     public override void EngageController()
     {
         base.EngageController();
+        StartCoroutine(WaitForResponse());
     }
     public override void DisengageController()
     {
         base.DisengageController();
+        StopAllCoroutines();
     }
     public override void OnConnectedToMaster()
     {
@@ -30,10 +32,19 @@ public class LoadingMenuController : SubController<LoadingMenu>
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        root.ShowErrorMenu(message);
+        root.ShowErrorMenu("Room creation failed: " + message);
     }
     public override void OnLeftRoom()
     {
         root.OpenMenu("title");
+    }
+    IEnumerator WaitForResponse()
+    {
+        yield return new WaitForSeconds(5f);
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        root.ShowErrorMenu("Time for response was too long");
     }
 }

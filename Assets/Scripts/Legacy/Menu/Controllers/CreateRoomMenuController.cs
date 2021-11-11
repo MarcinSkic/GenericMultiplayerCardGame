@@ -22,7 +22,6 @@ public class CreateRoomMenuController : SubController<CreateRoomMenu>
             //TODO: Add roomName generated with nick of player
             return;
         }
-        
         PhotonNetwork.CreateRoom(name);
         root.OpenMenu("loading");
     }
