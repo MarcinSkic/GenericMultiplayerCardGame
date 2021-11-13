@@ -8,13 +8,19 @@ public class TitleMenuController : SubController<TitleMenu>
     {
         ui.OnCreateRoomClicked += OpenCreateRoom;
         ui.OnQuitGameClicked += QuitGame;
+        ui.OnFindRoomClicked += OpenFindRoom;
         base.EngageController();
     }
     public override void DisengageController()
     {
         ui.OnCreateRoomClicked -= OpenCreateRoom;
         ui.OnQuitGameClicked -= QuitGame;
+        ui.OnFindRoomClicked -= OpenFindRoom;
         base.DisengageController();
+    }
+    void OpenFindRoom()
+    {
+        root.OpenMenu("findRoom");
     }
     void OpenCreateRoom()
     {
