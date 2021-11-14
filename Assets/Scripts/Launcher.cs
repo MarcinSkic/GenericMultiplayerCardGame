@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -17,6 +18,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     [SerializeField] private RoomListButton roomButtonPrefab;
     [SerializeField] private PlayerItem playerItemPrefab;
+
+    [SerializeField] private Button startGameButton;
 
     [SerializeField] private string defaultRoomName;
 
@@ -36,6 +39,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinLobby();
         Debug.Log("JoinedMaster");
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public override void OnJoinedLobby()
@@ -63,6 +67,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
+    public void StartGame()
+    {
+        PhotonNetwork.LoadLevel(1);
+    }
+
     public override void OnJoinedRoom()
     {
         MenuManager.Instance.OpenMenu("room");
@@ -72,6 +81,13 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             AddPlayerToList(item);
         }
+
+        startGameButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        startGameButton.gameObject.SetActive(PhotonNetwork.IsMasterClient);
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
