@@ -23,6 +23,6 @@ public class RoomListButton : MonoBehaviour
     public UnityAction<RoomInfo> onRoomButtonClicked;
     void RoomButtonClicked()
     {
-        Launcher.Instance.JoinRoom(info);
+        onRoomButtonClicked?.Invoke(info);
     }
 }

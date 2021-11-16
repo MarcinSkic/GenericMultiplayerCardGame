@@ -14,21 +14,31 @@ public class RootMenuController : MonoBehaviour
     {
         Instance = this;
     }
+
     public void Start()
     {
-        /*Debug.Log("Connecting to Master");
+        Debug.Log("Connecting to Master");
         OpenMenu("loading");
         PhotonNetwork.ConnectUsingSettings();
-        foreach(SubController menu in menus)
+
+        FirstInitOfControllers();
+    }
+
+    private void FirstInitOfControllers()
+    {
+        foreach (SubController menu in menus)
         {
             menu.root = this;
-        }*/
+            menu.Init();
+        }
     }
+
     public void OpenMenu(string menuName)
     {
         CloseAllMenus();
         menus.Find(c => c.menuName == menuName).EngageController();
     }
+
     public void ShowErrorMenu(string error)
     {
         CloseAllMenus();
@@ -36,6 +46,7 @@ public class RootMenuController : MonoBehaviour
         result.SetError(error);
         result.EngageController();
     }
+
     public void CloseAllMenus()
     {
         foreach (SubController menu in menus)

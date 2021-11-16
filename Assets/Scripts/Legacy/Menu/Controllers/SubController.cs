@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+public enum MenuControllerType { Loading, Title, CreateRoom, FindRoom, Room, Error};
 public class SubController : MonoBehaviourPunCallbacks
 {
     public string menuName;
     [HideInInspector]
     public RootMenuController root;
+
+    public virtual void Init()
+    {
+
+    }
+
     public virtual void EngageController()
     {
         gameObject.SetActive(true);
