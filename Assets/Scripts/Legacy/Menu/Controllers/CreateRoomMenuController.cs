@@ -10,17 +10,18 @@ public class CreateRoomMenuController : SubController<CreateRoomMenu>
         base.EngageController();
         ui.OnCreateRoomClicked += CreateRoom;
     }
+
     public override void DisengageController()
     {
         base.DisengageController();
         ui.OnCreateRoomClicked -= CreateRoom;
     }
+
     void CreateRoom(string name)
     {
         if (string.IsNullOrEmpty(name))
         {
-            //TODO: Add roomName generated with nick of player
-            return;
+            name = PhotonNetwork.NickName + "'s game";
         }
         PhotonNetwork.CreateRoom(name);
         root.OpenMenu("loading");

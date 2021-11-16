@@ -5,10 +5,10 @@ using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerItem : MonoBehaviourPunCallbacks
+public class UIPlayerItem : MonoBehaviourPunCallbacks
 {
     [SerializeField] TMP_Text playerName;
-    Player player;
+    public Player player;
 
     public void Init(Player player)
     {

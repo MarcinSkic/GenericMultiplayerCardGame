@@ -12,9 +12,28 @@ public class CallbacksController : MonoBehaviourPunCallbacks
     {
         Instance = this;
     }
-    public UnityAction<List<RoomInfo>> OnJoinedRoomAct;
+
+    public UnityAction<List<RoomInfo>> OnRoomListUpdateAct;
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        OnJoinedRoomAct?.Invoke(roomList);
+        OnRoomListUpdateAct?.Invoke(roomList);
+    }
+
+    public UnityAction<Player> OnMasterClientSwitchedAct;
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        OnMasterClientSwitchedAct?.Invoke(newMasterClient);
+    }
+
+    public UnityAction<Player> OnPlayerEnteredRoomAct;
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        OnPlayerEnteredRoomAct?.Invoke(newPlayer);
+    }
+
+    public UnityAction<Player> OnPlayerLeftRoomAct;
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        OnPlayerLeftRoomAct?.Invoke(otherPlayer);
     }
 }
