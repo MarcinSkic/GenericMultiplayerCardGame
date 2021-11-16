@@ -27,9 +27,11 @@ public class FindRoomMenu : BaseMenu
     {
         onBackToMenuClicked?.Invoke();
     }
+
     public RoomListButton AddRoomToList(RoomListButton prefab)
     {
         var copy = Instantiate(prefab, listContent);
         return copy;
     }
+
 }
