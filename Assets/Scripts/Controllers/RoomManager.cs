@@ -9,6 +9,7 @@ using System.IO;
 public class RoomManager : MonoBehaviourPunCallbacks
 {
     public static RoomManager Instance;
+    public int score = 0;
 
     private void Awake()
     {
